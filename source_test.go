@@ -14,3 +14,12 @@ func TestSource(t *testing.T) {
 		t.Error("Value returned by Int63() is higher than 63-bit integer.")
 	}
 }
+
+func BenchmarkSource(b *testing.B) {
+
+	src := newSource()
+
+	for n := 0; n < b.N; n++ {
+		src.Int63()
+	}
+}
