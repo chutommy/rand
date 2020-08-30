@@ -16,3 +16,12 @@ func TestRand(t *testing.T) {
 		t.Errorf("Function New returns %s, expected %s", got, exp)
 	}
 }
+
+func BenchmarkRand(b *testing.B) {
+
+	r := New()
+
+	for n := 0; n < b.N; n++ {
+		r.Float64()
+	}
+}
