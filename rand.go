@@ -21,12 +21,12 @@ import (
 // New generates a new rand.Rand from the math/rand, which
 // generates true random numbers.
 //
-// Rand implements all functions from the package math/rand.
-// All of the math's pseudo-random generators are now TRNG.
-// Keep in mind, that some of the original methods,
+// Rand implements all functions from the package math/rand package.
+// All of the math's pseudo-random generators are now true-RNG.
+// Keep in mind, that some original methods,
 // such as Seed(), does not working anymore.
 //
-// The documentation of the math's rand.Rand: https://pkg.go.dev/math/rand
+// See: https://pkg.go.dev/math/rand?tab=doc#Rand
 func New() *rand.Rand {
 	return rand.New(newSource())
 }
