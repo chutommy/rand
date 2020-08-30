@@ -1,11 +1,18 @@
 package rand
 
-import "testing"
+import (
+	rand "math/rand"
+	"reflect"
+	"testing"
+)
 
 func TestRand(t *testing.T) {
 
 	r := New()
 
-	// try to run math/crypto Rand's method
-	_ = r.Int()
+	got := reflect.TypeOf(r).String()
+	exp := reflect.TypeOf(&rand.Rand{}).String()
+	if got != exp {
+		t.Errorf("Function New returns %s, expected %s", got, exp)
+	}
 }
