@@ -2,14 +2,15 @@ package rand
 
 import "fmt"
 
-func ExampleFloat64() {
+func ExampleRand_Float64() {
 
 	r := New()
 
-	fmt.Printf("My favorite floating number is %g.", r.Float64())
+	// generate random float in range [0,1]
+	_ = r.Float64()
 }
 
-func ExampleIntn() {
+func ExampleRand_Intn() {
 
 	r := New()
 
@@ -28,11 +29,11 @@ func ExampleIntn() {
 	fmt.Println(f)
 }
 
-func ExampleShuffle() {
+func ExampleRand_Shuffle() {
 
 	r := New()
 
-	vegetables := []string{
+	veges := []string{
 		"cucumber",
 		"carrot",
 		"cabbage",
@@ -41,9 +42,10 @@ func ExampleShuffle() {
 		"radish",
 	}
 	swapVeges := func(i, j int) {
-		vegetables[i], vegetables[j] = vegetables[j], vegetables[i]
+		veges[i], veges[j] = veges[j], veges[i]
 	}
 
-	r.Shuffle(len(vegetables), swapVeges)
-	fmt.Println(vegetables)
+	// shuffle the vegetables
+	r.Shuffle(len(veges), swapVeges)
+	fmt.Println(veges)
 }
