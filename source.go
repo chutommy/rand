@@ -1,7 +1,7 @@
 package rand
 
 import (
-	crand "crypto/rand"
+	rand "crypto/rand"
 	"encoding/binary"
 )
 
@@ -14,7 +14,7 @@ type source struct{}
 // and return a random uint64.
 func (s *source) uint64() uint64 {
 	var value uint64
-	binary.Read(crand.Reader, binary.BigEndian, &value)
+	binary.Read(rand.Reader, binary.BigEndian, &value)
 	return value
 }
 
