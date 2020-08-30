@@ -3,6 +3,7 @@ package rand
 import (
 	crand "crypto/rand"
 	"encoding/binary"
+	mrand "math/rand"
 )
 
 // source is an object which satisfies the Source
@@ -37,6 +38,8 @@ func (s *source) Int63() int64 {
 // from the crypto/rand package and does not depend on any Seed.
 func (*source) Seed(int64) { /* noop */ }
 
-func newSource() *source {
+// newSource generates a new source which implements
+// the math's rand.Source interface.
+func newSource() mrand.Source {
 	return &source{}
 }
