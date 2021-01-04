@@ -1,8 +1,9 @@
 package rand
 
 import (
-	rand "crypto/rand"
+	crand "crypto/rand"
 	"encoding/binary"
+	mrand "math/rand"
 )
 
 // source is an object which satisfies the Source
@@ -10,11 +11,11 @@ import (
 // provides a random source on each function call.
 type source struct{}
 
-// uint64 uses the crypto/rand package to generate
-// and return a random uint64.
+// uint64 uses the crypto/rand package to generate a random uint64.
 func (s *source) uint64() uint64 {
 	var value uint64
-	binary.Read(rand.Reader, binary.BigEndian, &value)
+	_ = binary.Read(crand.Reader, binary.BigEndian, &value)
+
 	return value
 }
 
@@ -22,11 +23,8 @@ func (s *source) uint64() uint64 {
 // a random uint64 and shifting it by one binary
 // non-negative to narrow the range.
 func (s *source) Int63() int64 {
-	// using bitwise operation 'AND' so
-	// 1<<63 is technically going to fill
-	// the first 63 digits with 1 which basically means
-	// that the first digit (64th in the left to right direction)
-	// is never equal to 1.
+	// ^uint64(1<<63) fills the first 63 digits with 1 (and leaves the last digit with 0)
+	// so the first digit of the returning value is never equal to 1.
 	return int64(s.uint64() & ^uint64(1<<63))
 }
 
@@ -37,8 +35,7 @@ func (s *source) Int63() int64 {
 // from the crypto/rand package and does not depend on any Seed.
 func (*source) Seed(int64) { /* noop */ }
 
-// newSource generates a new source which implements
-// the math's rand.Source interface.
-func newSource() *source {
+// NewSource generates a new source which implements the math's rand.Source interface.
+func NewSource() mrand.Source {
 	return &source{}
 }
