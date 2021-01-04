@@ -27,5 +27,5 @@ import (
 //
 // See: https://pkg.go.dev/math/rand?tab=doc#Rand
 func New() *rand.Rand {
-	return rand.New(NewSource())
+	return rand.New(NewSource()) //nolint:gosec
 }
