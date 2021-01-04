@@ -1,19 +1,18 @@
-package rand
+package rand_test
 
-import "fmt"
+import (
+	"github.com/chutified/rand"
+)
 
 func ExampleRand_Float64() {
-
-	r := New()
+	r := rand.New()
 
 	// generate random float in range [0,1]
 	_ = r.Float64()
 }
 
 func ExampleRand_Intn() {
-
-	r := New()
-
+	r := rand.New()
 	fruits := []string{
 		"apple",
 		"banana",
@@ -25,13 +24,12 @@ func ExampleRand_Intn() {
 	}
 
 	// get random fruit
-	f := fruits[r.Intn(len(fruits))]
-	fmt.Println(f)
+	_ = fruits[r.Intn(len(fruits))]
+	// Output:
 }
 
 func ExampleRand_Shuffle() {
-
-	r := New()
+	r := rand.New()
 
 	veges := []string{
 		"cucumber",
@@ -47,5 +45,6 @@ func ExampleRand_Shuffle() {
 
 	// shuffle the vegetables
 	r.Shuffle(len(veges), swapVeges)
-	fmt.Println(veges)
+	_ = veges
+	// Output:
 }
