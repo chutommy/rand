@@ -7,8 +7,8 @@ import (
 )
 
 func TestRand(t *testing.T) {
-	r1 := rand.New()
-	r2 := rand.New()
+	r1 := rand.NewRand()
+	r2 := rand.NewRand()
 
 	got1 := r1.Uint64()
 	got2 := r2.Uint64()
@@ -19,23 +19,23 @@ func TestRand(t *testing.T) {
 }
 
 func BenchmarkRand(b *testing.B) {
-	r := rand.New()
+	r := rand.NewRand()
 
 	for n := 0; n < b.N; n++ {
 		r.Float64()
 	}
 }
 
-func ExampleNew_float64() {
-	r := rand.New()
+func ExampleNewRand_float64() {
+	r := rand.NewRand()
 
 	// generate random float in range [0,1]
 	_ = r.Float64()
 	// Output:
 }
 
-func ExampleNew_intn() {
-	r := rand.New()
+func ExampleNewRand_intn() {
+	r := rand.NewRand()
 
 	fruits := []string{
 		"apple",
@@ -52,8 +52,8 @@ func ExampleNew_intn() {
 	// Output:
 }
 
-func ExampleNew_shuffle() {
-	r := rand.New()
+func ExampleNewRand_shuffle() {
+	r := rand.NewRand()
 
 	veges := []string{
 		"cucumber",

@@ -17,7 +17,7 @@ import (
 	"math/rand"
 )
 
-// New generates a new rand.Rand from the math/rand
+// NewRand generates a new rand.Rand from the math/rand
 // with a dynamic source.
 //
 // Rand implements all functions from the package math/rand package.
@@ -26,6 +26,6 @@ import (
 // such as Seed(), does not work anymore.
 //
 // See: https://pkg.go.dev/math/rand?tab=doc#Rand
-func New() *rand.Rand {
+func NewRand() *rand.Rand {
 	return rand.New(NewSource()) //nolint:gosec
 }
