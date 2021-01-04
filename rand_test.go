@@ -25,3 +25,50 @@ func BenchmarkRand(b *testing.B) {
 		r.Float64()
 	}
 }
+
+func ExampleNew_float64() {
+	r := rand.New()
+
+	// generate random float in range [0,1]
+	_ = r.Float64()
+	// Output:
+}
+
+func ExampleNew_intn() {
+	r := rand.New()
+
+	fruits := []string{
+		"apple",
+		"banana",
+		"cherry",
+		"kiwi",
+		"lemon",
+		"avocado",
+		"mango",
+	}
+
+	// select random fruit from the slice
+	_ = fruits[r.Intn(len(fruits))]
+	// Output:
+}
+
+func ExampleNew_shuffle() {
+	r := rand.New()
+
+	veges := []string{
+		"cucumber",
+		"carrot",
+		"cabbage",
+		"beetroot",
+		"spinach",
+		"radish",
+	}
+	swapVeges := func(i, j int) {
+		veges[i], veges[j] = veges[j], veges[i]
+	}
+
+	// shuffle the slice of vegetables
+	r.Shuffle(len(veges), swapVeges)
+	_ = veges
+	// Output:
+}
