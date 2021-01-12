@@ -24,7 +24,7 @@ func (s *source) uint64() uint64 {
 // non-negative to narrow the range.
 func (s *source) Int63() int64 {
 	// ^uint64(1<<63) fills the first 63 digits with 1 (and leaves the last digit with 0)
-	// so the first digit of the returning value is never equal to 1.
+	// so the first digit of the returning value is always zero.
 	return int64(s.uint64() & ^uint64(1<<63))
 }
 
@@ -35,7 +35,7 @@ func (s *source) Int63() int64 {
 // from the crypto/rand package and does not depend on any Seed.
 func (*source) Seed(int64) { /* noop */ }
 
-// NewSource generates a new source which implements the math's rand.Source interface.
+// NewSource generates a truly random new math's rand.Source.
 func NewSource() mrand.Source {
 	return &source{}
 }
