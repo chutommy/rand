@@ -66,3 +66,36 @@ import (
     rand "github.com/chutified/rand"
 )
 ```
+## Examples
+
+```go
+package main
+
+import "github.com/chutified/rand"
+
+func main() {
+	r := rand.NewRand()
+	
+	// generate a random float
+	_ = r.Float32()
+	_ = r.Float64()
+	
+	// generate a random integer
+	_ = r.Int()
+	_ = r.Intn(10) // (0~9)
+	
+	// shuffle a slice
+	fruits := []string{
+		"apple",
+		"banana",
+		"cherry",
+		"kiwi",
+		"lemon",
+		"avocado",
+		"mango",
+	}
+	r.Shuffle(len(fruits), func(i, j int) {
+		fruits[i], fruits[j] = fruits[j], fruits[i]
+	})
+}
+```
