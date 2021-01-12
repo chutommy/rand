@@ -4,6 +4,18 @@ Clean and easy to use `math/rand` clone with a true random generator.
 
 ![Rand package logo](img/rand.svg)
 
+## Table of contents
+
+  - [Go Rand Package](#go-rand-package)
+    - [Contents](#table-of-contents)
+    - [Why another rand?](#wait-why-another-rand-package)
+    - [Comparison](#comparison-of-the-existing-rand-packages)
+      - [crypto/rand](#cryptorand)
+      - [math/rand](#mathrand)
+      - [chutified/rand](#chutifiedrand)
+    - [Installation](#installation)
+    - [Examples](#examples)
+
 ## Wait... Why another rand package?
 
 Well, to put it simply, in the Go's standard library the `math/rand` is not random
