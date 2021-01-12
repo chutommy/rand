@@ -1,4 +1,4 @@
-# Rand
+# Go Rand Package
 
 Clean and easy to use `math/rand` clone with a true random generator.
 
@@ -11,13 +11,13 @@ enough (not at all actually) and the `crypto/rand` has terrifying and really wea
 user interface (vs. the `math/rand`). This rand package takes the best of both worlds
 and merges them into a one beautiful and easy to use package with a truly random generator.
 
-## Comparison
+## Comparison of the existing rand packages
 
 ### `crypto/rand`
 
-* cryptographically secure random number generator
-+ hard to use
-+ ugly and weak interface
+  * cryptographically secure random number generator
+  + hard to use
+  + ugly and weak interface
 
 ###`math/rand`
 
@@ -60,9 +60,9 @@ import "github.com/chutified/rand"
 
 ```go
 import (
-  crand "crypto/rand"
-  mrand "math/rand"
+    crand "crypto/rand"
+    mrand "math/rand"
   
-  rand "github.com/chutified/rand"
+    rand "github.com/chutified/rand"
 )
 ```
