@@ -1,6 +1,6 @@
 # Go Rand Package
 
-Clean and easy to use `math/rand` clone with a true random generator.
+Clean and easy to use `math/rand` library clone with a true random generator.
 
 ![Rand package logo](img/rand.svg)
 
@@ -16,11 +16,11 @@ Clean and easy to use `math/rand` clone with a true random generator.
     - [Installation](#installation)
     - [Examples](#examples)
 
-## Wait... Why another rand package?
+## Why another rand package?
 
 Well, to put it simply, in the Go's standard library the `math/rand` is not random
-enough (not at all actually) and the `crypto/rand` has terrifying and really weak
-user interface (vs. the `math/rand`). This rand package takes the best of both worlds
+enough (not at all actually) and the `crypto/rand` has a terrifying and really weak
+user interface (compared with the `math/rand`). This package takes the best of both worlds
 and merges them into a one beautiful and easy to use package with a truly random generator.
 
 ## Comparison of the existing rand packages
@@ -31,13 +31,13 @@ and merges them into a one beautiful and easy to use package with a truly random
   + hard to use
   + ugly and weak interface
 
-###`math/rand`
+### `math/rand`
 
   * an excellent interface 
   * rich method set
   * easy to use
   * great documentation 
-  + not random (may be dangerous to use)
+  + not cryptographically random (results can be easily regenerated)
 
 #### Why does not `rand.Seed(time.Now().UnixNano())` make the package `math/rand` safe enough?
 
@@ -50,7 +50,7 @@ generation is required.
   * beautiful math's rand interface 
   * nice and rich method set
   * simple and easy to use
-  * true random number generator
+  * true random generator
 
 ## Installation
 
