@@ -3,7 +3,7 @@ package rand_test
 import (
 	"testing"
 
-	"github.com/chutified/rand"
+	"github.com/chutommy/rand"
 )
 
 func TestSource(t *testing.T) {

@@ -12,7 +12,7 @@ Clean and easy to use `math/rand` library clone with a true random generator.
     - [Comparison](#comparison-of-the-existing-rand-packages)
       - [crypto/rand](#cryptorand)
       - [math/rand](#mathrand)
-      - [chutified/rand](#chutifiedrand)
+      - [chutommy/rand](#chutommyrand)
     - [Installation](#installation)
     - [Examples](#examples)
 
@@ -45,7 +45,7 @@ If the same seed value is provided, everything that was randomly generated can b
 and therefore this implementation can not be used when a cryptographically secure random
 generation is required.
 
-### `chutified/rand`
+### `chutommy/rand`
 
   * beautiful math's rand interface 
   * nice and rich method set
@@ -54,18 +54,18 @@ generation is required.
 
 ## Installation
 
-To install `chutified/rand` package, you need to install Go and set your Go workspace and an environment first.
+To install `chutommy/rand` package, you need to install Go and set your Go workspace and an environment first.
 
-1. Then you can use the Go command bellow to install `chutified/rand`:
+1. Then you can use the Go command bellow to install `chutommy/rand`:
 
 ```shell
-$ go get -u github.com/chutified/rand
+$ go get -u github.com/chutommy/rand
 ```
 
 2. Import the package in your code.
 
 ```go
-import "github.com/chutified/rand"
+import "github.com/chutommy/rand"
 ```
 
 3. (Optional) Import `math/rand` and/or `crypto/rand`. Aliases are needed to distinguish the packages.
@@ -75,7 +75,7 @@ import (
     crand "crypto/rand"
     mrand "math/rand"
   
-    rand "github.com/chutified/rand"
+    rand "github.com/chutommy/rand"
 )
 ```
 ## Examples
@@ -83,7 +83,7 @@ import (
 ```go
 package main
 
-import "github.com/chutified/rand"
+import "github.com/chutommy/rand"
 
 func main() {
 	r := rand.NewRand()

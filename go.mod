@@ -1,3 +1,3 @@
-module github.com/chutified/rand
+module github.com/chutommy/rand
 
 go 1.15
