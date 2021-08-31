@@ -1,0 +1,59 @@
+<!doctype html><html lang=en-us><head><meta name=generator content="Hugo 0.85.0"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Tommy Chu"><meta name=description content="Clean and easy to use math/rand library clone with a true random generator."><title>Go package chutommy/rand</title><link rel=icon type=image/png href=./assets/img/logo/favicon.png><script async src="https://www.googletagmanager.com/gtag/js?id=G-FQLGDD7LFP"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-FQLGDD7LFP')</script><link rel=stylesheet href=./assets/fonts/SourceSansPro/stylesheet.css><link rel=stylesheet href=./assets/css/styles.css></head><body><header id=page-header><div id=page-logo-wrapper><img id=page-logo alt="Uwe Uwe Logo" src=./assets/img/logo/logo.png width=150 height=150></div><h1 id=page-title>Go package chutommy/rand</h1><div id=page-short-desc>Clean and easy to use math/rand library clone with a true random generator.</div><ul id=page-platform-links class=as-icons-and-text><li><a href=https://chutommy.github.io/ title="Go to author's website" target=_blank><img alt="author icon" src=./assets/img/platforms/personal.png width=36 height=36>
+<span>Author</span></a></li><li><a href=https://github.com/chutommy/rand title="Go to the Observer Github repository" target=_blank><img alt="source icon" src=./assets/img/platforms/github.png width=36 height=36>
+<span>Source</span></a></li><li><a href=https://pkg.go.dev/github.com/chutommy/rand title="Go to the package documentation page" target=_blank><img alt="documentation icon" src=./assets/img/platforms/document.png width=36 height=36>
+<span>Documentation</span></a></li></ul></header><nav id=page-toc><h2>Table of Contents</h2><ul><li><a href=#why>Why</a></li><li><a href=#comparison>Comparison</a></li><li><a href=#installation>Installation</a></li><li><a href=#usage>Usage</a></li></ul></nav><main id=page-content><p><img src=./assets/img/site/rand.svg alt="Rand package logo"></p><h2 id=why>Why?</h2><p>Go&rsquo;s standard library includes two rather distinct packages for generating
+random numbers.</p><p>One of these two packages is <code>math/rand</code> which has an excellent interface. It is
+well documented and contains a rich and diverse method set. But it has one
+catch. It is not random enough (not at all actually). The randomness of the
+package depends on a seed which can&rsquo;t be randomly generated within the package,
+and it isn&rsquo;t easy to generate with external packages either. Therefore, it is
+commonly used with a time seed when cryptographical level of security isn&rsquo;t
+required. This can be enough for some use cases but keep in mind that all values
+can be easily replicated with the same seed value.</p><p>On the other hand there is a second random package, the <code>crypto/rand</code>. It is
+perfectly able to provide a cryptographical security randomness. However, it is
+hard to use and has very weak interface with only one function to generate a
+random value. On top of that the data type of the returned value is
+<code>big.Int</code>.</p><p>As you may expect, this package takes the best of both worlds and merges them
+into a one beautiful and easy to use package with a true random generator.</p><h4 id=why-isnt-randseedtimenowunixnano-with-mathrand-safe-enough>Why isn&rsquo;t <code>rand.Seed(time.Now().UnixNano())</code> with <code>math/rand</code> safe enough?</h4><p>If the same time seed value is provided, everything that is &ldquo;randomly&rdquo; generated
+can be easily replicated. This implementation cannot be used if a
+cryptographically secure random generation is required.</p><h2 id=comparison>Comparison</h2><h3 id=mathrand><code>math/rand</code></h3><ul><li>excellent interface</li><li>rich method set</li><li>easy to use</li><li>not cryptographically random (results can be easily regenerated)</li></ul><h3 id=cryptorand><code>crypto/rand</code></h3><ul><li>cryptographically secure random number generator</li><li>hard to use</li><li>limited interface</li></ul><h3 id=chutommyrand><code>chutommy/rand</code></h3><ul><li>beautiful math&rsquo;s rand interface</li><li>nice and rich method set</li><li>simple and easy to use</li><li>true RNG</li></ul><h2 id=installation>Installation</h2><ol><li>Download the package:</li></ol><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>$ go get -u github.com/chutommy/rand
+</code></pre></div><ol start=2><li>Import it in your code:</li></ol><pre><code>import &quot;github.com/chutommy/rand&quot;
+</code></pre><ol start=3><li>(Optional) Import <code>math/rand</code> and/or <code>crypto/rand</code>. Use aliases to
+distinguish the packages:</li></ol><pre><code>import (
+   crand &quot;crypto/rand&quot;
+   mrand &quot;math/rand&quot;
+
+   &quot;github.com/chutommy/rand&quot;
+)
+</code></pre><h2 id=usage>Usage</h2><pre><code>package main
+
+import &quot;github.com/chutommy/rand&quot;
+
+func main() {
+	// get the *math.Rand with a cryptographically
+	// generated seed
+	r := rand.NewRand()
+	
+	// random floats
+	_ = r.Float32()
+	_ = r.Float64()
+	
+	// random integers
+	_ = r.Int()
+	_ = r.Intn(10)
+	
+	// shuffle a slice
+	ff := []string{
+		&quot;apple&quot;,
+		&quot;banana&quot;,
+		&quot;cherry&quot;,
+		&quot;kiwi&quot;,
+		&quot;lemon&quot;,
+		&quot;avocado&quot;,
+		&quot;mango&quot;,
+	}
+	r.Shuffle(len(ff), func(i, j int) {
+		ff[i], ff[j] = ff[j], ff[i]
+	})
+}
+</code></pre></main><script src=./assets/js/uwe-uwe.js type=text/javascript></script><script type=text/javascript>UWE_UWE.FOOTNOTES.init(),UWE_UWE.TABS.init()</script></body></html>
