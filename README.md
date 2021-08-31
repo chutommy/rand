@@ -1,84 +1,87 @@
 # Go Rand Package
 
-Clean and easy to use `math/rand` library clone with a true random generator.
+Clean and easy to use `math/rand` library with a true random generator.
 
 ![Rand package logo](img/rand.svg)
 
-## Table of contents
+## Why?
 
-  - [Go Rand Package](#go-rand-package)
-    - [Contents](#table-of-contents)
-    - [Why another rand?](#wait-why-another-rand-package)
-    - [Comparison](#comparison-of-the-existing-rand-packages)
-      - [crypto/rand](#cryptorand)
-      - [math/rand](#mathrand)
-      - [chutommy/rand](#chutommyrand)
-    - [Installation](#installation)
-    - [Examples](#examples)
+Go's standard library includes two rather distinct packages for generating
+random numbers.
 
-## Why another rand package?
+One of these two packages is `math/rand` which has an excellent interface. It is
+well documented and contains a rich and diverse method set. But it has one
+catch. It is not random enough (not at all actually). The randomness of the
+package depends on a seed which can't be randomly generated within the package,
+and it isn't easy to generate with external packages either. Therefore, it is
+commonly used with a time seed when cryptographical level of security isn't
+required. This can be enough for some use cases but keep in mind that all values
+can be easily replicated with the same seed value.
 
-Well, to put it simply, in the Go's standard library the `math/rand` is not random
-enough (not at all actually) and the `crypto/rand` has a terrifying and really weak
-user interface (compared with the `math/rand`). This package takes the best of both worlds
-and merges them into a one beautiful and easy to use package with a truly random generator.
+On the other hand there is a second random package, the `crypto/rand`. It is
+perfectly able to provide a cryptographical security randomness. However, it is
+hard to use and has very weak interface with only one function to generate a
+random value. On top of that the data type of the returned value is
+`big.Int`.
 
-## Comparison of the existing rand packages
+As you may expect, this package takes the best of both worlds and merges them
+into a one beautiful and easy to use package with a true random generator.
 
-### `crypto/rand`
+#### Why isn't `rand.Seed(time.Now().UnixNano())` with `math/rand` safe enough?
 
-  * cryptographically secure random number generator
-  + hard to use
-  + ugly and weak interface
+If the same time seed value is provided, everything that is "randomly" generated
+can be easily replicated. This implementation cannot be used if a
+cryptographically secure random generation is required.
+
+## Comparison
 
 ### `math/rand`
 
-  * an excellent interface 
-  * rich method set
-  * easy to use
-  * great documentation 
-  + not cryptographically random (results can be easily regenerated)
+* excellent interface
+* rich method set
+* easy to use
+* not cryptographically random (results can be easily regenerated)
 
-#### Why does not `rand.Seed(time.Now().UnixNano())` make the package `math/rand` safe enough?
+### `crypto/rand`
 
-If the same seed value is provided, everything that was randomly generated can be replicated
-and therefore this implementation can not be used when a cryptographically secure random
-generation is required.
+* cryptographically secure random number generator
+* hard to use
+* limited interface
 
 ### `chutommy/rand`
 
-  * beautiful math's rand interface 
-  * nice and rich method set
-  * simple and easy to use
-  * true random generator
+* beautiful math's rand interface
+* nice and rich method set
+* simple and easy to use
+* true RNG
 
 ## Installation
 
-To install `chutommy/rand` package, you need to install Go and set your Go workspace and an environment first.
-
-1. Then you can use the Go command bellow to install `chutommy/rand`:
+1. Download the package:
 
 ```shell
 $ go get -u github.com/chutommy/rand
 ```
 
-2. Import the package in your code.
+2. Import it in your code:
 
 ```go
 import "github.com/chutommy/rand"
 ```
 
-3. (Optional) Import `math/rand` and/or `crypto/rand`. Aliases are needed to distinguish the packages.
+3. (Optional) Import `math/rand` and/or `crypto/rand`. Use aliases to
+   distinguish the packages:
 
 ```go
 import (
-    crand "crypto/rand"
-    mrand "math/rand"
-  
-    rand "github.com/chutommy/rand"
+   crand "crypto/rand"
+   mrand "math/rand"
+
+   "github.com/chutommy/rand"
 )
 ```
-## Examples
+
+## Usage
 
 ```go
 package main
@@ -86,15 +89,16 @@ package main
 import "github.com/chutommy/rand"
 
 func main() {
+	// get the *math.Rand with a cryptographically generated seed
 	r := rand.NewRand()
 	
-	// generate a random float
+	// random floats
 	_ = r.Float32()
 	_ = r.Float64()
 	
-	// generate a random integer
+	// random integers
 	_ = r.Int()
-	_ = r.Intn(10) // (0~9)
+	_ = r.Intn(10)
 	
 	// shuffle a slice
 	fruits := []string{
