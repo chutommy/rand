@@ -67,7 +67,7 @@ params:
 
     googleAnalytics:
       active: true
-      id: G-FQLGDD7LFP
+      id: G-KJLLCGTNQQ
 
     renderHooks:
       image:
